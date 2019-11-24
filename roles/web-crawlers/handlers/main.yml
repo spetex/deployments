@@ -6,6 +6,16 @@
   args:
     chdir: '{{ apps_dir }}/{{ app_name }}'
 
+- name: ensure {{ app_name }} data dir in {{ data_dir }}
+  file:
+    path: '{{ data_dir }}'
+    state: directory
+
+- name: ensure {{ app_name }} logs dir in {{ logs_dir }}
+  file:
+    path: '{{ logs_dir }}'
+    state: directory
+
 - name: whenever crontab update
   command: 'rvm {{ ruby_version}}@{{ app_name}} do whenever --update-crontab'
   args:
@@ -15,13 +25,3 @@
     CRAWLERS_RUBY_GEMSET: '{{ app_name }}'
     CRAWLERS_DATA_DIR: '{{ data_dir }}'
     CRAWLERS_LOG_FILE: '{{ logs_dir }}/{{ app_name }}.log'
-
-- name: create {{ app_name }} data dir
-  file:
-    path: '{{ data_dir }}'
-    state: directory
-
-- name: ensure {{ app_name }} logs dir
-  file:
-    path: '{{ logs_dir }}'
-    state: directory

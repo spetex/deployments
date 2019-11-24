@@ -9,5 +9,6 @@
     - check {{ app_name}} gemset
     - install {{ app_name }} gems
     - whenever crontab update
-    - create {{ app_name }} data dir
+    - ensure {{ app_name }} data dir in {{ data_dir }}
+    - ensure {{ app_name }} logs dir in {{ logs_dir }}
     - ensure cronie restarted
