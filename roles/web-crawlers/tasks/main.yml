@@ -1,7 +1,7 @@
 - name: ensure {{ app_name }} repo
   git:
     repo: '{{ github }}{{ app_name }}.git'
-    dest: '{{ apps_dir}}/{{ app_name }}'
+    dest: '{{ app_dir }}'
     update: yes
     clone: yes
     version: master
@@ -10,5 +10,5 @@
     - install {{ app_name }} gems
     - whenever crontab update
     - ensure {{ app_name }} data dir in {{ data_dir }}
-    - ensure {{ app_name }} logs dir in {{ logs_dir }}
+    - ensure {{ app_name }} log file in {{ logs_file }}
     - ensure cronie restarted

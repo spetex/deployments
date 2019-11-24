@@ -7,9 +7,9 @@
 - name: ensure {{ app_name }} gems
   command: 'rvm {{ ruby_version }}@{{ app_name }} do bundle install'
   args:
-    chdir: '{{ apps_dir }}/{{ app_name }}'
+    chdir: '{{ app_dir }}'
 
 - name: ensure jekyll build
   command: 'rvm {{ ruby_version }}@{{ app_name }} do jekyll build'
   args:
-    chdir: '{{ apps_dir }}/{{ app_name }}'
+    chdir: '{{ app_dir }}'

@@ -1,1 +1,2 @@
 app_name: 'blog'
+app_dir: '{{ apps_dir }}/{{ app_name }}'

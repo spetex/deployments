@@ -1,7 +1,7 @@
 - name: ensure {{ app_name }} repo
   git:
     repo: '{{ github }}{{ app_name }}.git'
-    dest: '{{ apps_dir }}/{{ app_name }}'
+    dest: '{{ app_dir }}'
     update: yes
     clone: yes
     version: master
