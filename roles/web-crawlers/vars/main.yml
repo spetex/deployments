@@ -1,0 +1,3 @@
+app_name: 'web-crawlers'
+data_dir: '{{ apps_dir }}/{{ app_name }}/data'
+logs_dir: '{{ apps_dir }}/{{ app_name }}/logs'

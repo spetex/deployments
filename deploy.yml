@@ -5,6 +5,8 @@
   vars:
     ruby_version: ruby
     rvm_dir: /usr/local/rvm/bin
+    github: https://github.com/spetex/
+    apps_dir: /var/www
 
   environment:
     PATH: '{{ rvm_dir }}:{{ ansible_env.PATH }}'
@@ -15,6 +17,7 @@
     - rss-feeds
     - web-crawlers
 
+  # Common handlers for all roles
   handlers:
   - name: ensure nginx restarted
     systemd:
