@@ -1,12 +1,12 @@
-- name: ensure blog repo
+- name: ensure {{ app_name }} repo
   git:
-    repo: https://github.com/spetex/blog.git
-    dest: /var/www/blog
+    repo: '{{ github }}{{ app_name }}.git'
+    dest: '{{ apps_dir }}/{{ app_name }}'
     update: yes
     clone: yes
     version: master
   notify:
-    - ensure blog gemset
-    - ensure blog gem bundler2
-    - ensure blog gems
+    - ensure {{ app_name }} gemset
+    - ensure {{ app_name }} gem bundler2
+    - ensure {{ app_name }} gems
     - ensure jekyll build

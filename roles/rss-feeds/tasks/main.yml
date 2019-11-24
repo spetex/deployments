@@ -1,11 +1,11 @@
-- name: ensure rss-feeds repo
+- name: ensure {{ app_name }} repo
   git:
-    repo: https://github.com/spetex/rss-feeds.git
-    dest: /var/www/rss-feeds
+    repo: '{{ github }}{{ app_name }}.git'
+    dest: '{{ apps_dir }}/{{ app_name }}'
     update: yes
     clone: yes
     version: master
   notify:
-    - ensure rss-feeds gemset
-    - ensure rss-feed gems
+    - ensure {{ app_name }} gemset
+    - ensure {{ app_name }} gems
     - ensure nginx restarted

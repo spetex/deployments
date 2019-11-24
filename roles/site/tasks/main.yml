@@ -1,7 +1,7 @@
-- name: ensure site repo
+- name: ensure {{ app_name }} repo
   git:
-    repo: https://github.com/spetex/site.git
-    dest: /var/www/site
+    repo: '{{ github }}{{ app_name }}.git'
+    dest: '{{ apps_dir }}/{{ app_name }}'
     update: yes
     clone: yes
     version: master

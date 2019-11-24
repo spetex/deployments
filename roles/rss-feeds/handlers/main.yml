@@ -1,7 +1,7 @@
-- name: ensure rss-feeds gemset
-  command: rvm gemset create rss-feeds
+- name: ensure {{ app_name }} gemset
+  command: 'rvm gemset create {{ app_name }}'
 
-- name: ensure rss-feed gems
-  command: rvm {{ ruby_version}}@rss-feeds do bundle install
+- name: ensure {{ app_name }} gems
+  command: 'rvm {{ ruby_version}}@{{ app_name }} do bundle install'
   args:
-    chdir: /var/www/rss-feeds
+    chdir: '{{ apps_dir }}/{{ app_name }}'
