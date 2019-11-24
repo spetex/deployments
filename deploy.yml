@@ -3,15 +3,17 @@
   remote_user: app
 
   vars:
-    ruby_version: ruby
-    rvm_dir: /usr/local/rvm/bin
+    # rvm compatible ruby version
+    ruby_version: ruby-2.6.3
+    rvm_dir: /usr/local/rvm
+    rvm_bin: '{{ rvm_dir }}/bin'
     github: https://github.com/spetex/
     apps_dir: /var/www
     apps_log_dir: /var/log/apps
     apps_storage_dir: /var/cache/apps
 
   environment:
-    PATH: '{{ rvm_dir }}:{{ ansible_env.PATH }}'
+    PATH: '{{ rvm_bin }}:{{ ansible_env.PATH }}'
 
   roles:
     - site
