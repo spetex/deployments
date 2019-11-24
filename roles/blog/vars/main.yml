@@ -1,2 +1,3 @@
 app_name: 'blog'
+hostname: 'blog.spetex.cz'
 app_dir: '{{ apps_dir }}/{{ app_name }}'

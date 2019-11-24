@@ -1,2 +1,4 @@
 app_name: 'rss-feeds'
+hostname: 'rss.spetex.cz'
 app_dir: '{{ apps_dir }}/{{ app_name }}'
+data_dir: '{{ apps_storage_dir }}/web-crawlers'

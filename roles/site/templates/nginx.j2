@@ -1,0 +1,22 @@
+server {
+  server_name {{ hostname }} www.{{ hostname }};
+  listen 443 ssl;
+  root {{ app_dir }};
+
+  ssl_certificate /etc/letsencrypt/live/{{ hostname }}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{{ hostname }}/privkey.pem;
+  include /etc/letsencrypt/options-ssl-nginx.conf;
+  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+server {
+  server_name {{ hostname }} www.{{ hostname }};
+  listen 80;
+  if ($host = www.{{ hostname }}) {
+    return 301 https://$host$request_uri;
+  }
+  if ($host = {{ hostname }}) {
+    return 301 https://$host$request_uri;
+  }
+  return 404;
+}
