@@ -1,0 +1,7 @@
+- name: ensure site repo
+  git:
+    repo: https://github.com/spetex/site.git
+    dest: /var/www/site
+    update: yes
+    clone: yes
+    version: master

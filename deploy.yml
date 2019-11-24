@@ -1,0 +1,29 @@
+---
+- hosts: iceland
+  remote_user: app
+
+  vars:
+    ruby_version: ruby
+    rvm_dir: /usr/local/rvm/bin
+
+  environment:
+    PATH: '{{ rvm_dir }}:{{ ansible_env.PATH }}'
+
+  roles:
+    - site
+    - blog
+    - rss-feeds
+    - web-crawlers
+
+  handlers:
+  - name: ensure nginx restarted
+    systemd:
+      name: nginx
+      state: restarted
+    become: yes
+
+  - name: ensure cronie restarted
+    systemd:
+      name: cronie
+      state: restarted
+    become: yes

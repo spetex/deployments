@@ -1,0 +1,11 @@
+- name: ensure rss-feeds repo
+  git:
+    repo: https://github.com/spetex/rss-feeds.git
+    dest: /var/www/rss-feeds
+    update: yes
+    clone: yes
+    version: master
+  notify:
+    - ensure rss-feeds gemset
+    - ensure rss-feed gems
+    - ensure nginx restarted

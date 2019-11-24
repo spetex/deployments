@@ -1,0 +1,7 @@
+- name: ensure rss-feeds gemset
+  command: rvm gemset create rss-feeds
+
+- name: ensure rss-feed gems
+  command: rvm {{ ruby_version}}@rss-feeds do bundle install
+  args:
+    chdir: /var/www/rss-feeds

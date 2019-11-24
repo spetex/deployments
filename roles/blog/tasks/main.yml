@@ -1,0 +1,12 @@
+- name: ensure blog repo
+  git:
+    repo: https://github.com/spetex/blog.git
+    dest: /var/www/blog
+    update: yes
+    clone: yes
+    version: master
+  notify:
+    - ensure blog gemset
+    - ensure blog gem bundler2
+    - ensure blog gems
+    - ensure jekyll build

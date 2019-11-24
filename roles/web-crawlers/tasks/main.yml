@@ -1,0 +1,13 @@
+- name: ensure web-crawlers repo
+  git:
+    repo: https://github.com/spetex/web-crawlers.git
+    dest: /var/www/web-crawlers
+    update: yes
+    clone: yes
+    version: master
+  notify:
+    - check web-crawlers gemset
+    - install web-crawlers gems
+    - whenever crontab update
+    - create web-crawlers data dir
+    - ensure cronie restarted

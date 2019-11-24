@@ -1,0 +1,22 @@
+- name: check web-crawlers gemset
+  command: rvm gemset create web-crawlers
+
+- name: install web-crawlers gems
+  command: rvm {{ ruby_version}}@web-crawlers do bundle install
+  args:
+    chdir: /var/www/web-crawlers
+
+- name: whenever crontab update
+  command: rvm {{ ruby_version}}@web-crawlers do whenever --update-crontab
+  args:
+    chdir: /var/www/web-crawlers
+
+- name: create web-crawlers data dir
+  file:
+    path: /var/www/web-crawlers/data
+    state: directory
+    
+- name: ensure web-crawlers logs dir
+  file:
+    path: /var/www/web-crawlers/logs
+    state: directory

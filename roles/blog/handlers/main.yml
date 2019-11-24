@@ -1,0 +1,15 @@
+- name: ensure blog gemset
+  command: rvm gemset create blog
+
+- name: ensure blog gem bundler2
+  command: rvm {{ ruby_version}}@blog do gem install bundler
+
+- name: ensure blog gems
+  command: rvm {{ ruby_version}}@blog do bundle install
+  args:
+    chdir: /var/www/blog
+
+- name: ensure jekyll build
+  command: rvm {{ ruby_version}}@blog do jekyll build
+  args:
+    chdir: /var/www/blog
