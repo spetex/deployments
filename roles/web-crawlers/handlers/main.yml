@@ -2,7 +2,7 @@
   command: rvm gemset create {{ app_name }}
 
 - name: install {{ app_name }} gems
-  command: 'rvm {{ ruby_version}}@{{ app_name }} do bundle install'
+  command: 'rvm {{ ruby_version }}@{{ app_name }} do bundle install'
   args:
     chdir: '{{ app_dir }}'
 
@@ -17,7 +17,7 @@
     state: touch
 
 - name: whenever crontab update
-  command: 'rvm {{ ruby_version}}@{{ app_name}} do whenever --update-crontab'
+  command: 'rvm {{ ruby_version }}@{{ app_name }} do whenever --update-crontab'
   args:
     chdir: '{{ app_dir }}'
   environment:
