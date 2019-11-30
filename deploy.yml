@@ -16,7 +16,9 @@
   environment:
     PATH: '{{ rvm_bin }}:{{ ansible_env.PATH }}'
 
+  # Common tasks for all roles
   roles:
+    - ruby
     - site
     - static
     - blog

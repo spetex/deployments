@@ -29,3 +29,12 @@
   become: yes
   notify:
     - ensure nginx restarted
+
+- name: ensure {{ app_name }} .ruby-version file
+  template:
+    src: ../../templates/ruby-version.j2
+    dest: '{{ apps_dir}}/{{ app_name }}/.ruby-version'
+  notify:
+    - ensure {{ app_name }} gemset
+    - ensure {{ app_name }} gems
+    - ensure nginx restarted

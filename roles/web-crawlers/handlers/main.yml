@@ -1,5 +1,7 @@
 - name: check {{ app_name }} gemset
   command: rvm gemset create {{ app_name }}
+  args:
+    chdir: '{{ app_dir }}'
 
 - name: install {{ app_name }} gems
   command: 'rvm {{ ruby_version }}@{{ app_name }} do bundle install'
@@ -25,3 +27,4 @@
     CRAWLERS_RUBY_GEMSET: '{{ app_name }}'
     CRAWLERS_DATA_DIR: '{{ data_dir }}'
     CRAWLERS_LOG_FILE: '{{ logs_file }}'
+    RUBY_VERSION: '{{ ruby_version }}'

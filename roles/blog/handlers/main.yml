@@ -1,5 +1,7 @@
 - name: ensure {{ app_name }} gemset
   command: 'rvm gemset create {{ app_name }}'
+  args:
+    chdir: '{{ app_dir }}'
 
 - name: ensure {{ app_name }} gem bundler2
   command: 'rvm {{ ruby_version }}@{{ app_name }} do gem install bundler'
