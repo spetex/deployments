@@ -1,0 +1,24 @@
+- name: ensure static files
+  copy:
+    src: '{{ local_static_dir }}'
+    dest: '{{ apps_dir }}'
+
+- name: ensure {{ app_name }} nginx config in sites-available
+  template:
+    src: ./templates/nginx.j2
+    dest: /etc/nginx/sites-available/{{ app_name }}
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify:
+    - ensure nginx restarted
+
+- name: ensure {{ app_name }} nginx symbolic link in sites-enabled
+  file:
+    src: '/etc/nginx/sites-available/{{ app_name }}'
+    dest: '/etc/nginx/sites-enabled/{{ app_name }}'
+    state: link
+  become: yes
+  notify:
+    - ensure nginx restarted

@@ -11,12 +11,14 @@
     apps_dir: /var/www
     apps_log_dir: /var/log/apps
     apps_storage_dir: /var/cache/apps
+    local_static_dir: /home/spetex/Repos/Personal/static
 
   environment:
     PATH: '{{ rvm_bin }}:{{ ansible_env.PATH }}'
 
   roles:
     - site
+    - static
     - blog
     - rss-feeds
     - web-crawlers
