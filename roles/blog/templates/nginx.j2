@@ -1,7 +1,11 @@
 server {
   server_name {{ hostname }};
   listen 443 ssl;
-  root {{ app_dir }}/_site;
+  root {{ app_dir }};
+
+  passenger_enabled on;
+  passenger_app_root {{ app_dir }};
+  passenger_ruby {{ rvm_dir }}/gems/{{ ruby_version }}@{{ app_name }}/wrappers/ruby;
 
   ssl_certificate /etc/letsencrypt/live/{{ hostname }}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/{{ hostname }}/privkey.pem;

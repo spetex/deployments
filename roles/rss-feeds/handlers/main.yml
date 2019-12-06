@@ -4,6 +4,6 @@
     chdir: '{{ app_dir }}'
 
 - name: ensure {{ app_name }} gems
-  command: 'rvm {{ ruby_version}}@{{ app_name }} do bundle install'
+  command: 'rvm {{ ruby_version }}@{{ app_name }} do bundle install --without development'
   args:
     chdir: '{{ app_dir }}'
