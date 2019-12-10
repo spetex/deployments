@@ -7,6 +7,8 @@ server {
   ssl_certificate_key /etc/letsencrypt/live/{{ hostname }}/privkey.pem;
   include /etc/letsencrypt/options-ssl-nginx.conf;
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+  add_header 'Access-Control-Allow-Origin' 'spetex.cz';
 }
 
 server {
