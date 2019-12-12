@@ -1,3 +1,14 @@
+map $http_origin $origin_allowed {
+  default 0;
+  https://spetex.cz 1;
+  https://www.spetex.cz 1;
+}
+
+map $origin_allowed $origin {
+  default "";
+  1 $http_origin;
+}
+
 server {
   server_name {{ hostname }};
   listen 443 ssl http2;
@@ -8,7 +19,7 @@ server {
   include /etc/letsencrypt/options-ssl-nginx.conf;
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
-  add_header 'Access-Control-Allow-Origin' 'spetex.cz';
+  add_header 'Access-Control-Allow-Origin' $origin;
 }
 
 server {
