@@ -1,0 +1,10 @@
+- name: ensure correct nginx.conf in /etc/nginx
+  template:
+    src: ./templates/nginx.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify:
+    - ensure nginx restarted

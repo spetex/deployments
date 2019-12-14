@@ -24,6 +24,7 @@
     - blog
     - rss-feeds
     - web-crawlers
+    - nginx
 
   # Common handlers for all roles
   handlers:

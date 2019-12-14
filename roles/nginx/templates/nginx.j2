@@ -1,0 +1,48 @@
+user nginx nginx;
+worker_processes 1;
+
+events {
+	worker_connections 1024;
+	use epoll;
+}
+
+http {
+  access_log /var/log/nginx/access.log;
+  error_log /var/log/nginx/error.log debug;
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+	log_format main
+		'$remote_addr - $remote_user [$time_local] '
+		'"$request" $status $bytes_sent '
+		'"$http_referer" "$http_user_agent" '
+		'"$gzip_ratio"';
+
+	client_header_timeout 10m;
+	client_body_timeout 10m;
+	send_timeout 10m;
+	connection_pool_size 256;
+	client_header_buffer_size 1k;
+	large_client_header_buffers 4 2k;
+	request_pool_size 4k;
+	gzip off;
+	output_buffers 1 32k;
+	postpone_output 1460;
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+	keepalive_timeout 75 20;
+	ignore_invalid_headers on;
+  server_names_hash_bucket_size 128;
+  map_hash_bucket_size 128;
+
+  passenger_root /usr/src/passenger-6.0.4;
+  passenger_log_file /var/log/nginx/passenger.log;
+  passenger_ruby /usr/local/rvm/gems/ruby-2.6.3/wrappers/ruby;
+
+	add_header "Report-To" "{\"group\":\"default\",\"max_age\":31536000,\"endpoints\":[{\"url\":\"https://spetex.report-uri.com/a/d/g\"}],\"include_subdomains\":true}";
+	add_header "Expect-CT" "max-age=604800, report-uri=\"https://spetex.report-uri.com/r/d/ct/enforce\"";
+	add_header "Content-Security-Policy" "default-src 'none'; form-action 'none'; frame-ancestors 'none'; font-src fonts.gstatic.com static.spetex.cz; img-src static.spetex.cz; style-src static.spetex.cz fonts.googleapis.com 'self'; report-uri https://spetex.report-uri.com/r/d/csp/enforce";
+	add_header "Strict-Transport-Security" "max-age=31536000; includeSubDomains" always;
+
+  include /etc/nginx/sites-enabled/*;
+}
