@@ -19,6 +19,8 @@ server {
   gzip_min_length 1024;
   gzip_types text/plain text/html text/css application/x-javascript text/javascript;
 
+  cache-control: public, max-age=86400
+
   ssl_certificate /etc/letsencrypt/live/{{ hostname }}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/{{ hostname }}/privkey.pem;
   include /etc/letsencrypt/options-ssl-nginx.conf;
