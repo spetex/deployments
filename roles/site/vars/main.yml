@@ -1,3 +1,6 @@
 app_name: 'site'
-hostname: 'spetex.cz'
+hostnames:
+  - 'spetex.cz'
+  - 'spetex.dev'
+  - 'petesahula.cz'
 app_dir: '{{ apps_dir }}/{{ app_name }}'
