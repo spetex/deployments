@@ -6,20 +6,17 @@ passenger_src: '/usr/src/passenger-6.0.4'
 
 report_uri_domain: 'https://spetex.report-uri.com'
 csp_policies:
-  - default-src 'none';
-  - form-action 'none';
+  - default-src     'none';
+  - form-action     'none';
   - frame-ancestors 'none';
-  - font-src fonts.gstatic.com static.spetex.cz;
-  - img-src static.spetex.cz;
-  - style-src static.spetex.cz fonts.googleapis.com 'self';
+  - connect-src     'self';
+  - img-src         'self' static.spetex.cz;
+  - style-src       'self' static.spetex.cz fonts.googleapis.com;
+  - font-src        'self' static.spetex.cz fonts.gstatic.com;
   - report-uri {{ report_uri_domain }}/r/d/csp/enforce
 
 allowed_origins:
-  - https://spetex.cz
-  - https://www.spetex.cz
-  - https://spetex.dev
-  - https://www.spetex.dev
-  - https://petesahula.cz
-  - https://www.petesahula.cz
-  - https://spetex-minis.com
-  - https://www.spetex.minis.com
+  - spetex.cz
+  - spetex.dev
+  - petesahula.cz
+  - spetex-minis.com

@@ -47,7 +47,8 @@ http {
   map $http_origin $origin_allowed {
     default 0;
     {% for origin in allowed_origins %}
-    {{ origin }} 1;
+    https://{{ origin }} 1;
+    https://www.{{ origin }} 1;
     {% endfor %}
   }
 
