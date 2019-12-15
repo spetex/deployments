@@ -1,3 +1,7 @@
 app_name: 'static'
 hostname: 'static.spetex.cz'
 app_dir: '{{ apps_dir }}/{{ app_name }}'
+
+cache_expiration_fonts: '1y'
+cache_expiration_assets: '1d'
+cache_expiration_images: '30d'

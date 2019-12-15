@@ -1,0 +1,25 @@
+nginx_log_dir: '/var/log/nginx'
+nginx_access_log_file: 'access.log'
+nginx_error_log_file: 'error.log'
+nginx_passenger_log_file: 'passenger.log'
+passenger_src: '/usr/src/passenger-6.0.4'
+
+report_uri_domain: 'https://spetex.report-uri.com'
+csp_policies:
+  - default-src 'none';
+  - form-action 'none';
+  - frame-ancestors 'none';
+  - font-src fonts.gstatic.com static.spetex.cz;
+  - img-src static.spetex.cz;
+  - style-src static.spetex.cz fonts.googleapis.com 'self';
+  - report-uri {{ report_uri_domain }}/r/d/csp/enforce
+
+allowed_origins:
+  - https://spetex.cz
+  - https://www.spetex.cz
+  - https://spetex.dev
+  - https://www.spetex.dev
+  - https://petesahula.cz
+  - https://www.petesahula.cz
+  - https://spetex-minis.com
+  - https://www.spetex.minis.com

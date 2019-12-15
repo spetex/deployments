@@ -1,20 +1,3 @@
-map $http_origin $origin_allowed {
-  default 0;
-  https://spetex.cz 1;
-  https://www.spetex.cz 1;
-  https://spetex.dev 1;
-  https://www.spetex.dev 1;
-  https://petesahula.cz 1;
-  https://www.petesahula.cz 1;
-  https://spetex-minis.com 1;
-  https://www.spetex.minis.com 1;
-}
-
-map $origin_allowed $origin {
-  default "";
-  1 $http_origin;
-}
-
 server {
   server_name {{ hostname }};
   listen 443 ssl http2;
@@ -25,14 +8,22 @@ server {
   gzip_min_length 1024;
   gzip_types text/plain text/css application/x-javascript text/javascript;
 
-  add_header "Cache-Control" "public, max-age=86400";
+  location ~* \.(png|jpg|jpeg|gif|ico|webp|svg)$ {
+    expires {{ cache_expiration_images }};
+  }
+
+  location ~* \.(woff|woff2|ttf|eot)$ {
+    expires {{ cache_expiration_fonts }};
+  }
+
+  location ~* \.(css|js)$ {
+    expires {{ cache_expiration_assets }};
+  }
 
   ssl_certificate /etc/letsencrypt/live/{{ hostname }}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/{{ hostname }}/privkey.pem;
   include /etc/letsencrypt/options-ssl-nginx.conf;
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-
-  add_header "Access-Control-Allow-Origin" $origin;
 }
 
 server {
