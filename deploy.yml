@@ -18,24 +18,9 @@
 
   # Common tasks for all roles
   roles:
-    - ruby
+    - system
     - site
     - static
     - blog
     - rss-feeds
     - web-crawlers
-    - nginx
-
-  # Common handlers for all roles
-  handlers:
-  - name: ensure nginx restarted
-    systemd:
-      name: nginx
-      state: restarted
-    become: yes
-
-  - name: ensure cronie restarted
-    systemd:
-      name: cronie
-      state: restarted
-    become: yes

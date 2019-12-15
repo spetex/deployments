@@ -1,3 +1,11 @@
+- name: get ruby version
+  command: 'rvm list'
+  register: current_version
+
+- name: install {{ ruby_version }}
+  command: 'rvm install {{ ruby_version }}'
+  when: current_version.stdout.find(ruby_version) == -1
+
 - name: ensure correct nginx.conf in /etc/nginx
   template:
     src: ./templates/nginx.j2
