@@ -1,0 +1,4 @@
+- name: ensure static files
+  copy:
+    src: '{{ local_static_dir }}'
+    dest: '{{ apps_dir }}'

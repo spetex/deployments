@@ -1,0 +1,10 @@
+---
+- hosts: iceland
+  remote_user: app
+
+  vars:
+    apps_dir: /var/www
+    local_static_dir: /home/spetex/Repos/Personal/static
+
+  roles:
+    - static-sync
