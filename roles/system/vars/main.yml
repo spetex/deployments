@@ -10,6 +10,7 @@ csp_policies:
   - form-action     'none';
   - frame-ancestors 'none';
   - connect-src     'self';
+  - script-src      'self' 'unsafe-eval';
   - img-src         'self' static.spetex.cz;
   - style-src       'self' static.spetex.cz fonts.googleapis.com;
   - font-src        'self' static.spetex.cz fonts.gstatic.com;
