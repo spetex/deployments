@@ -8,6 +8,8 @@
   notify:
     - ensure {{ app_name }} gemset
     - ensure {{ app_name }} gems
+    - ensure {{ app_name }} js dependencies
+    - ensure {{ app_name }} svelte build
     - ensure nginx restarted
 
 - name: ensure {{ app_name }} nginx config in sites-available

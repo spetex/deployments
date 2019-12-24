@@ -7,3 +7,13 @@
   command: 'rvm {{ ruby_version }}@{{ app_name }} do bundle install --without development'
   args:
     chdir: '{{ app_dir }}'
+
+- name: ensure {{ app_name }} js dependencies
+  command: 'npm install'
+  args:
+    chdir: '{{ app_dir }}/layouts/assets'
+
+- name: ensure {{ app_name }} svelte build
+  command: 'npm run build'
+  args:
+    chdir: '{{ app_dir }}/layouts/assets'
