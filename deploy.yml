@@ -1,6 +1,9 @@
 ---
-- hosts: iceland
+- hosts: iceland-app
   remote_user: app
+
+  vars_files:
+    - secret
 
   vars:
     # rvm compatible ruby version
