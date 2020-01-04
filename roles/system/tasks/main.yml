@@ -5,6 +5,9 @@
 - name: install {{ ruby_version }}
   command: 'rvm install {{ ruby_version }}'
   when: current_version.stdout.find(ruby_version) == -1
+    
+- name: ensure bundler gem
+  command: 'rvm {{ ruby_version }}@global do gem install bundler:{{ bundler_version }}'
 
 - name: ensure correct nginx.conf in /etc/nginx
   template:
