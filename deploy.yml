@@ -7,7 +7,7 @@
 
   vars:
     # rvm compatible ruby version
-    ruby_version: ruby-2.6.3
+    ruby_version: ruby-2.7.0
     bundler_version: 2.1.3
     rvm_dir: /usr/local/rvm
     rvm_bin: '{{ rvm_dir }}/bin'
