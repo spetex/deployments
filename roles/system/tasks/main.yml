@@ -19,3 +19,14 @@
   become: yes
   notify:
     - ensure nginx restarted
+
+- name: ensure nginx pass file in /etc/nginx
+  template:
+    src: ./templates/pass.j2
+    dest: /etc/nginx/pass
+    owner: nginx
+    group: nginx
+    mode: '0700'
+  become: yes
+  notify:
+    - ensure nginx restarted
