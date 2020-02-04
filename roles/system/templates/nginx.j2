@@ -46,6 +46,7 @@ http {
 
   map $http_origin $origin_allowed {
     default 0;
+    http://localhost:9292 1;
     {% for origin in allowed_origins %}
     https://{{ origin }} 1;
     https://www.{{ origin }} 1;
