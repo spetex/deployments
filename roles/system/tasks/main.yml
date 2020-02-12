@@ -9,6 +9,10 @@
 - name: ensure bundler gem
   command: 'rvm {{ ruby_version }}@global do gem install bundler:{{ bundler_version }}'
 
+- name: ensure certificates are renewed
+  command: 'certbot -n renew'
+  become: yes
+
 - name: ensure correct nginx.conf in /etc/nginx
   template:
     src: ./templates/nginx.j2
